@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { CSVLink } from "react-csv";
-
+import moment from 'moment';
 
 export default class DailyEarnings extends Component {
 
@@ -57,7 +57,7 @@ export default class DailyEarnings extends Component {
                                     this.state.earnings.map(earning => {
                                         return (
                                             <tr key={earning._id}>
-                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.createdAt}</div></td>
+                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(earning.createdAt).format("LLL")}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoan_id}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.cryptozoon_data.map(coin => ((coin.current_price * earning.zoon).toFixed(2)))}</div></td>
