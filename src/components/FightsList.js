@@ -61,7 +61,7 @@ export default class FightsList extends Component {
         return (
             <div className="container">
                 <h1 className="text-flame"> {getTitle(this.props.match.params.zoan_id)} </h1>
-                <CSVLink filename={"test.csv"} data={this.state.fights} className="btn btn-warning btn-4 bi bi-cloud-arrow-down-fill"> Export to CSV </CSVLink>
+                <CSVLink filename={"Fights_List.csv"} data={this.state.fights} className="btn btn-warning btn-4 bi bi-cloud-arrow-down-fill"> Export to CSV </CSVLink>
                 <div className="row">
                     <div>
                         <table className="table table-dark table-hover table-bordered mydatatable">
