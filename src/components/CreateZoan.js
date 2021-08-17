@@ -19,7 +19,7 @@ export default class CreateZoan extends Component {
             rarity: this.state.rarity,
             exp_earned: this.state.exp_earned
         };
-        await axios.post('http://localhost:4000/api/zoans', newZoan);
+        await axios.post('https://gestor-cryptozoon.herokuapp.com/api/fights/api/zoans', newZoan);
 
         window.location.href = '/zoans';
     };
