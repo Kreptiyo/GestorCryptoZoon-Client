@@ -31,8 +31,7 @@ export default class CreateFight extends Component {
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
-        return <Redirect to={"/zoan/" + this.props.match.zoan_id} />
-        //window.location.href = '/zoan/' + this.props.match.params.zoan_id;
+        window.location.href = '/zoan/' + this.props.match.params.zoan_id;
     };
 
     onInputChange = (e) => {
