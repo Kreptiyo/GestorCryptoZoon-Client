@@ -23,12 +23,12 @@ export default class CreateFight extends Component {
             fee: this.state.fee,
             monster: this.state.monster,
         };
-        await axios.post('https://gestor-cryptozoon.herokuapp.com/api/fights/api/fights', newFight);
+        await axios.post('https://gestor-cryptozoon.herokuapp.com/api/fights', newFight);
         const newInfo = {
             zoon_earned: this.state.zoon,
             exp_earned: this.state.exp
         };
-        await axios.put('https://gestor-cryptozoon.herokuapp.com/api/fights/api/zoans/' + this.props.match.params.zoan_id, newInfo);
+        await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
         window.location.href = '/zoan/' + this.props.match.params.zoan_id;
     };
 

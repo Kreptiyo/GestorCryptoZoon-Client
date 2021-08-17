@@ -39,19 +39,19 @@ export default class FightsList extends Component {
     getFights = async () => {
         if(this.props.match.params.zoan_id != null)
         {
-            const res = await axios.get('https://gestor-cryptozoon.herokuapp.com/api/fights/api/fights/byzoan/' + this.props.match.params.zoan_id);
+            const res = await axios.get('https://gestor-cryptozoon.herokuapp.com/api/fights/byzoan/' + this.props.match.params.zoan_id);
             this.setState({ fights: res.data });
         }
         else
         {
-            const res = await axios.get('https://gestor-cryptozoon.herokuapp.com/api/fights/api/fights');
+            const res = await axios.get('https://gestor-cryptozoon.herokuapp.com/api/fights');
             this.setState({ fights: res.data });
         }
     }
 
     deleteFight = async (fightId) => {
         if (window.confirm('Are you sure you want to delete it?')) {
-            await axios.delete('https://gestor-cryptozoon.herokuapp.com/api/fights/api/fights/' + fightId);
+            await axios.delete('https://gestor-cryptozoon.herokuapp.com/api/fights/' + fightId);
             this.getFights();
         }
 

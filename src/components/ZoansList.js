@@ -50,7 +50,7 @@ export default class ZoansList extends Component {
     }
 
     getZoans = async () => {
-        const res = await axios.get('https://gestor-cryptozoon.herokuapp.com/api/fights/api/zoans')
+        const res = await axios.get('https://gestor-cryptozoon.herokuapp.com/api/zoans')
         this.setState({
             zoans: res.data
         });
@@ -66,14 +66,14 @@ export default class ZoansList extends Component {
 
     deleteZoan = async (zoanId) => {
         if (window.confirm('Are you sure you want to delete it?')) {
-            await axios.delete('https://gestor-cryptozoon.herokuapp.com/api/fights/api/zoans/' + zoanId);
+            await axios.delete('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + zoanId);
             this.getZoans();
         }
     }
 
     resetZoonEarned = async (zoanId) => {
         if(window.confirm('Are you sure you want to reset the funds of this zoan?')){
-            await axios.put('https://gestor-cryptozoon.herokuapp.com/api/fights/api/zoans/resetzoonearned/' + zoanId);
+            await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/resetzoonearned/' + zoanId);
             this.getZoans();
         }
     }
