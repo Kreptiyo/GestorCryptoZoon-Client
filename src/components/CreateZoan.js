@@ -36,7 +36,7 @@ export default class CreateZoan extends Component {
 
     render() {
         return (
-            <div className="container" style={{ width: 420 }}>
+            <div className="container" style={{ width: 400 }}>
                 <h1 className="text-flame">New Zoan</h1>
                 <div className="row">
                     <div className="card card-body bg-dark mb-3 border-warning mb-3">

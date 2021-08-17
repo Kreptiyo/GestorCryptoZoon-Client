@@ -8,6 +8,7 @@ import FightsList from './components/FightsList';
 import ZoansList from './components/ZoansList';
 import CreateFight from './components/CreateFight';
 import CreateZoan from './components/CreateZoan';
+import DailyEarnings from './components/DailyEarnings';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/createzoan" component={CreateZoan} />
           <Route path="/zoans" component={ZoansList} />
           <Route path="/zoan/:zoan_id" component={FightsList} />
+          <Route path="/dailyearnings" component={DailyEarnings} />
         </div>
       </div>
     </Router>
