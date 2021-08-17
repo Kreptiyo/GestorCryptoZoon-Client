@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 export default class CreateFight extends Component {
 
@@ -37,6 +36,10 @@ export default class CreateFight extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+
+    cancelOperation = () => {
+        this.props.history.push('/zoans');
     }
 
     render() {
@@ -81,7 +84,7 @@ export default class CreateFight extends Component {
                                 <div className="card-footer border-warning mb-1">
                                     <div className="btn-3 mb-2">
                                         <button type="submit" className="btn btn-warning">Register</button>
-                                        <Link to={"/zoans"} className="btn btn-3 btn-warning">Cancel</Link>
+                                        <button className="btn btn-warning" onClick={() => this.cancelOperation()}>Cancel</button>
                                     </div>
                                 </div>
                             </div>
