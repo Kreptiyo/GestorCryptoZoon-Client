@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { CSVLink } from "react-csv";
+import moment from 'moment';
 
 const getResultIcon = criterio => {
     switch (criterio) {
@@ -81,7 +82,7 @@ export default class FightsList extends Component {
                                     this.state.fights.map(fight => {
                                         return (
                                             <tr key={fight._id}>
-                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.date}</div></td>
+                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(fight.date).format("LLL")}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.zoon}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.exp}</div></td>
                                                 <td><div style={{ textAlign: "center" }}><button className={getResultIcon(fight.result)}>{fight.result}</button></div></td>
