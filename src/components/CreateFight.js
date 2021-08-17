@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {browserHistory} from "react-router";
+import  { Redirect } from 'react-router-dom'
 
 export default class CreateFight extends Component {
 
@@ -31,7 +31,7 @@ export default class CreateFight extends Component {
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
-        browserHistory.push("/zoan/" + this.props.match.zoan_id);
+        return <Redirect to={"/zoan/" + this.props.match.zoan_id} />
         //window.location.href = '/zoan/' + this.props.match.params.zoan_id;
     };
 
