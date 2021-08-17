@@ -106,7 +106,7 @@ export default class ZoansList extends Component {
                                         </div>
                                         <div className="card-footer border-warning mb-3">
                                             <div className="btn-2 mb-2">
-                                                <button className="btn btn-warning bi bi-eye-fill" onClick={() => this.getFights(zoan._id)}>View Fights</button>
+                                                <Link to={"/zoan/" + zoan._id} className="btn btn-secondary">TEST</Link>
                                                 <button className="btn btn-warning bi bi-plus-circle-fill" onClick={() => this.createFight(zoan._id)}> Add Fight</button>
                                             </div>
                                             <button className="btn btn-danger bi bi-trash" onClick={() => this.deleteZoan(zoan._id)}> Delete</button>
