@@ -73,7 +73,7 @@ export default class FightsList extends Component {
                                     <th><div style={{ textAlign: "center" }}>Result</div></th>
                                     <th><div style={{ textAlign: "center" }}>Fee</div></th>
                                     <th><div style={{ textAlign: "center" }}>Monster</div></th>
-                                    <th><div style={{ textAlign: "center" }}>Action</div></th>
+                                    <th><div style={{ textAlign: "center" }}>Actions</div></th>
                                 </tr>
                             </thead>
                             <tbody>

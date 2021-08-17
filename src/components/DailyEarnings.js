@@ -27,7 +27,13 @@ export default class DailyEarnings extends Component {
 
     }
 
+    deleteEarning = async (earningId) => {
+        if (window.confirm('Are you sure you want to delete it?')) {
+            await axios.delete('https://gestor-cryptozoon.herokuapp.com/api/earnings/' + earningId);
+            this.getEarnings();
+        }
 
+    }
 
     render() {
         return (
@@ -43,6 +49,7 @@ export default class DailyEarnings extends Component {
                                     <th><div style={{ textAlign: "center" }}>Zoan ID</div></th>
                                     <th><div style={{ textAlign: "center" }}>Zoon Earned</div></th>
                                     <th><div style={{ textAlign: "center" }}>Zoon to USD</div></th>
+                                    <th><div style={{ textAlign: "center" }}>Actions</div></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,6 +61,7 @@ export default class DailyEarnings extends Component {
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoan_id}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.cryptozoon_data.map(coin => ((coin.current_price * earning.zoon).toFixed(2)))}</div></td>
+                                                <td><div style={{ textAlign: "center" }}><button onClick={() => this.deleteEarning(earning._id)} className="btn btn-warning bi bi-trash">Delete</button></div></td>
                                             </tr>
                                         )
                                     })
