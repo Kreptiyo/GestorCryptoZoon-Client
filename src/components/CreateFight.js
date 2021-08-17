@@ -81,7 +81,7 @@ export default class CreateFight extends Component {
                                 <div className="card-footer border-warning mb-1">
                                     <div className="btn-3 mb-2">
                                         <button type="submit" className="btn btn-warning">Register</button>
-                                        <Link to={"/zoans"} className="btn btn-warning">Cancel</Link>
+                                        <Link to={"/zoans"} className="btn btn-3 btn-warning">Cancel</Link>
                                     </div>
                                 </div>
                             </div>
