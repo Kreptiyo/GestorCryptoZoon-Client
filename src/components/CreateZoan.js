@@ -21,7 +21,7 @@ export default class CreateZoan extends Component {
         };
         await axios.post('https://gestor-cryptozoon.herokuapp.com/api/zoans', newZoan);
 
-        window.location.href = '/zoans';
+        this.props.history.push('/zoans');
     };
 
     onInputChange = (e) => {
@@ -31,7 +31,7 @@ export default class CreateZoan extends Component {
     }
 
     cancelOperation = () => {
-        window.location.href = '/';
+        this.props.history.push('/');
     }
 
     render() {
