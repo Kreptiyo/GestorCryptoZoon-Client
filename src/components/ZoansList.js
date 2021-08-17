@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const getZoanImg = criterio => {
     if (criterio === "Mushroom") {
@@ -57,14 +57,6 @@ export default class ZoansList extends Component {
         });
     }
 
-    getFights = async (zoanId) => {
-        window.location.href = '/zoan/' + zoanId;
-    }
-
-    createFight = async (zoanId) => {
-        window.location.href = '/createfight/' + zoanId;
-    }
-
     deleteZoan = async (zoanId) => {
         if (window.confirm('Are you sure you want to delete it?')) {
             await axios.delete('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + zoanId);
@@ -107,8 +99,8 @@ export default class ZoansList extends Component {
                                         </div>
                                         <div className="card-footer border-warning mb-3">
                                             <div className="btn-2 mb-2">
-                                                <Link to={"/zoan/" + zoan._id} className="btn btn-secondary">TEST</Link>
-                                                <button className="btn btn-warning bi bi-plus-circle-fill" onClick={() => this.createFight(zoan._id)}> Add Fight</button>
+                                                <Link to={"/zoan/" + zoan._id} className="btn btn-warning bi bi-eye-fill">View Fights</Link>
+                                                <Link to={"/createfight/" + zoan._id} className="btn btn-warning bi bi-plus-circle-fill">Add Fight</Link>
                                             </div>
                                             <button className="btn btn-danger bi bi-trash" onClick={() => this.deleteZoan(zoan._id)}> Delete</button>
                                             <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoan._id)}> Reset Funds</button>

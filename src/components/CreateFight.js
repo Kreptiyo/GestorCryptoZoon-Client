@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class CreateFight extends Component {
 
@@ -29,17 +30,14 @@ export default class CreateFight extends Component {
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
-        window.location.href = '/zoan/' + this.props.match.params.zoan_id;
+        window.location.replace("https://611b36051a71df94ad472b4f--musing-bhabha-320228.netlify.app/zoan/" + this.props.match.params.zoan_id);
+        //window.location.href = '/zoan/' + this.props.match.params.zoan_id;
     };
 
     onInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
-    }
-
-    cancelOperation = () => {
-        window.location.href = '/zoans';
     }
 
     render() {
@@ -84,7 +82,7 @@ export default class CreateFight extends Component {
                                 <div className="card-footer border-warning mb-1">
                                     <div className="btn-3 mb-2">
                                         <button type="submit" className="btn btn-warning">Register</button>
-                                        <button className="btn btn-warning" onClick={() => this.cancelOperation()}>Cancel</button>
+                                        <Link to={"/zoans"} className="btn btn-warning">Cancel</Link>
                                     </div>
                                 </div>
                             </div>
