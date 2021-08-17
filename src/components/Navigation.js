@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 import axios from 'axios'
 
 export default class Navigation extends Component {
@@ -15,43 +16,33 @@ export default class Navigation extends Component {
         const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
         this.setState({ cryptozoon_data: res.data });
     }
-    
+
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container">
-                    <div className="container-fluid">
-                        <Link className="navbar-brand" to="/">
-                            Gestor de Zoon - V2.0
-                        </Link>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarNav">
-                            <ul className="navbar-nav">
-                                <li className="nav-item">
-                                    <Link className="nav-link bi bi-card-list" to="/"> All Fights</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link bi bi-people-fill" to="/zoans"> Zoans</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link bi bi-plus-circle" to="/createzoan"> New Zoan</Link>
-                                </li>
-                                <li className="nav-link bi bi-currency-dollar" style={{color: 'orange'}}>
-                                    Zoon Price: USD '
-                                    {
-                                        this.state.cryptozoon_data.map(coin => (
-                                            coin.current_price
-                                        ))
-                                    }
-                                    '
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <Navbar bg="dark" variant={"dark"} expand="lg">
+                <Navbar.Brand>Gestor de Zoon - 3.0</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav
+                        className="mr-auto my-2 my-lg-0"
+                        style={{ maxHeight: '145px' }}
+                        navbarScroll>
+                        <Nav.Link as={Link} to="/">Fights List</Nav.Link>
+                        <Nav.Link as={Link} to="/zoans">Zoans</Nav.Link>
+                        <Nav.Link as={Link} to="/createzoan">New Zoan</Nav.Link>
+                        <li className="nav-link bi bi-currency-dollar" style={{ color: 'orange' }}>
+                            Zoon Price: USD '
+                            {
+                                this.state.cryptozoon_data.map(coin => (
+                                    coin.current_price
+                                ))
+                            }
+                            '
+                        </li>
+                    </Nav>
+
+                </Navbar.Collapse>
+            </Navbar>
         )
     }
 }
