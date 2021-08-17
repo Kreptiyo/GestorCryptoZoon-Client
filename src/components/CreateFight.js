@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 export default class CreateFight extends Component {
 
@@ -30,7 +31,7 @@ export default class CreateFight extends Component {
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
-        window.location.href = '/zoan/' + this.props.match.params.zoan_id;
+        this.props.history.push('/zoan/' + this.props.match.params.zoan_id);
     };
 
     onInputChange = (e) => {
