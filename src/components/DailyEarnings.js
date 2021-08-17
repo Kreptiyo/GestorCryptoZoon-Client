@@ -40,7 +40,8 @@ export default class DailyEarnings extends Component {
                             <thead>
                                 <tr>
                                     <th><div style={{ textAlign: "center" }}>Date</div></th>
-                                    <th><div style={{ textAlign: "center" }}>Zoon</div></th>
+                                    <th><div style={{ textAlign: "center" }}>Zoan ID</div></th>
+                                    <th><div style={{ textAlign: "center" }}>Zoon Earned</div></th>
                                     <th><div style={{ textAlign: "center" }}>Zoon to USD</div></th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@ export default class DailyEarnings extends Component {
                                         return (
                                             <tr key={earning._id}>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.createdAt}</div></td>
+                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoan_id}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.cryptozoon_data.map(coin => ((coin.current_price * earning.zoon).toFixed(2)))}</div></td>
                                             </tr>
