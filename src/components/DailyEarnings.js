@@ -59,7 +59,7 @@ export default class DailyEarnings extends Component {
                                             <tr key={earning._id}>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(earning.createdAt).format("LLL")}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoan_id}</div></td>
-                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon}</div></td>
+                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon.toFixed(2)}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.cryptozoon_data.map(coin => ((coin.current_price * earning.zoon).toFixed(2)))}</div></td>
                                                 <td><div style={{ textAlign: "center" }}><button onClick={() => this.deleteEarning(earning._id)} className="btn btn-warning bi bi-trash">Delete</button></div></td>
                                             </tr>
