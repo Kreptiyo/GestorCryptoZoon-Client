@@ -81,7 +81,7 @@ export default class ZoansList extends Component {
         return (
             <div className="page-body">
                 <h1 className="text-flame">Zoans List</h1>
-                <Link to={"/createzoan"} className="btn btn-dark btn-outline-warning bi bi-person-plus-fill"> New Zoan</Link>
+         
                 <div className="container">
                     <div className="justify-content-center row">
                         {
