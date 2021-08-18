@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const getZoanImg = criterio => {
     if (criterio === "Mushroom") {
@@ -102,6 +103,7 @@ export default class ZoansList extends Component {
                                             <p> Zoon Earned: {zoan.zoon_earned.toFixed(2)} | {this.state.cryptozoon_data.map(coin => (
                                                 (coin.current_price * zoan.zoon_earned).toFixed(2)
                                             ))} USD</p>
+                                            <p>Last Update: {moment(zoan.updatedAt).format("LLL")}</p>
                                         </div>
                                         <div className="card-footer border-warning mb-3">
                                             <div className="btn-2 mb-2">
