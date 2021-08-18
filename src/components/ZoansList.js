@@ -80,6 +80,7 @@ export default class ZoansList extends Component {
         return (
             <div className="page-body">
                 <h1 className="text-flame">Zoans List</h1>
+                <Link to={"/createzoan"} className="btn btn-dark btn-outline-warning bi bi-person-plus-fill"> New Zoan</Link>
                 <div className="container">
                     <div className="justify-content-center row">
                         {
@@ -104,8 +105,8 @@ export default class ZoansList extends Component {
                                         </div>
                                         <div className="card-footer border-warning mb-3">
                                             <div className="btn-2 mb-2">
-                                                <Link to={"/zoan/" + zoan._id} className="btn btn-warning bi bi-eye-fill">View Fights</Link>
-                                                <Link to={"/createfight/" + zoan._id} className="btn btn-warning bi bi-plus-circle-fill">Add Fight</Link>
+                                                <Link to={"/zoan/" + zoan._id} className="btn btn-warning bi bi-eye-fill"> View Fights</Link>
+                                                <Link to={"/createfight/" + zoan._id} className="btn btn-warning bi bi-plus-circle-fill"> Add Fight</Link>
                                             </div>
                                             <button className="btn btn-danger bi bi-trash" onClick={() => this.deleteZoan(zoan._id)}> Delete</button>
                                             <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoan._id, zoan.zoon_earned)}> Reset Funds</button>

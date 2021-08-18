@@ -26,6 +26,17 @@ const getTitle = criterio => {
     }
 }
 
+const limitFightsList = (zoanId, arraySize) => {
+    if(zoanId == null)
+    {
+        return arraySize - 24;
+    }
+    else if(zoanId != null)
+    {
+        return 0;
+    }
+}
+
 export default class FightsList extends Component {
 
     state = {
@@ -79,7 +90,7 @@ export default class FightsList extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.fights.map(fight => {
+                                    this.state.fights.slice(limitFightsList(this.props.match.params.zoan_id, this.state.fights.length), this.state.fights.length).map(fight => {
                                         return (
                                             <tr key={fight._id}>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(fight.date).format("LLL")}</div></td>

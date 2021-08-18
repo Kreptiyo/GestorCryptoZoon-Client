@@ -27,10 +27,9 @@ export default class Navigation extends Component {
                         className="mr-auto my-2 my-lg-0"
                         style={{ maxHeight: '145px' }}
                         navbarScroll>
-                        <Nav.Link as={Link} to="/" className="">Fights List</Nav.Link>
-                        <Nav.Link as={Link} to="/zoans" className="">Zoans</Nav.Link>
-                        <Nav.Link as={Link} to="/createzoan" className="">New Zoan</Nav.Link>
-                        <Nav.Link as={Link} to="/dailyearnings" className="">Daily Earnings</Nav.Link>
+                        <Nav.Link as={Link} to="/" className="bi bi-list-stars"> Fights List</Nav.Link>
+                        <Nav.Link as={Link} to="/zoans" className="bi bi-people-fill"> Zoans</Nav.Link>
+                        <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
                         <li className="nav-link bi bi-currency-dollar" style={{ color: 'orange' }}>
                             Zoon Price: USD '
                             {
