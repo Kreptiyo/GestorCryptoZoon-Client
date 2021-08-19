@@ -3,12 +3,23 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-const getZoanImg = criterio => {
+function getZoanImg(criterio, exp) {
+    console.log("experiencia:" + exp);
     if (criterio === "Mushroom") {
-        return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_2.gif';
+        if (getZoanLvl(exp) <= 1) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_1.gif';
+        }
+        else if (getZoanLvl(exp) >= 3) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_2.gif';
+        }
     }
     if (criterio === "Rabbit") {
-        return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_3.gif';
+        if (getZoanLvl(exp) <= 1) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_1.gif';
+        }
+        if (getZoanLvl(exp) >= 3) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_3.gif'
+        }
     }
 }
 
@@ -92,7 +103,7 @@ export default class ZoansList extends Component {
                                         <div className="card-header">
                                             <span className="badge rounded-pill bg-warning text-dark">#{zoan._id}</span>
                                         </div>
-                                        <img alt="ZoanImg" src={getZoanImg(zoan.name)} className="card-img" />
+                                        <img alt="ZoanImg" src={getZoanImg(zoan.name, zoan.exp_earned)} className="card-img" />
                                         <div className="card-body">
                                             <h1 className="card-title"> {zoan.name} </h1>
                                             <p> Rare: {zoan.rarity}</p>
