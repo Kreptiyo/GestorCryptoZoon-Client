@@ -66,7 +66,7 @@ export default class ZoansList extends Component {
     }
 
     resetZoonEarned = async (zoanId, zoon_earned) => {
-        if(window.confirm('Are you sure you want to reset the funds of this zoan?')){
+        if (window.confirm('Are you sure you want to reset the funds of this zoan?')) {
             await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/resetzoonearned/' + zoanId);
             const newEarning = {
                 zoan_id: zoanId,
@@ -79,45 +79,39 @@ export default class ZoansList extends Component {
 
     render() {
         return (
-            <div className="page-body">
-                <h1 className="text-flame">Zoans List</h1>
-         
-                <div className="container">
-                    <div className="justify-content-center row">
-                        {
-                            this.state.zoans.map(zoan => (
-                                <div className="text-center col-12 col-sm-12 col-md-6 col-lg-4 col-xl-1-3" key={zoan._id}>
-                                    <div className="card-myzoan card text-white bg-dark mb-3 border-warning mb-3">
-                                        <div className="card-header">
-                                            <span className="badge rounded-pill bg-warning text-dark">
-                                                #{zoan._id}
-                                            </span>
+            <div className="container">
+                <div className="justify-content-center row">
+                    {
+                        this.state.zoans.map(zoan => (
+                            <div className="text-center col-12 col-sm-12 col-md-6 col-lg-4 col-xl-1-3" key={zoan._id}>
+                                <div className="card-myzoan card text-white bg-dark mb-3 border-warning mb-3">
+                                    <div className="card-header">
+                                        <span className="badge rounded-pill bg-warning text-dark">#{zoan._id}</span>
+                                    </div>
+                                    <img alt="ZoanImg" src={getZoanImg(zoan.name)} className="card-img" />
+                                    <div className="card-body">
+                                        <h1 className="card-title"> {zoan.name} </h1>
+                                        <p> Rare: {zoan.rarity}</p>
+                                        <p> Tribe: {zoan.tribe}</p>
+                                        <p> Level: {getZoanLvl(zoan.exp_earned)} / {zoan.exp_earned.toFixed(2)} exp</p>
+                                        <p> Class: {zoan.name} </p>
+                                        <p> Zoon Earned: {zoan.zoon_earned.toFixed(2)} | {this.state.cryptozoon_data.map(coin => (
+                                            (coin.current_price * zoan.zoon_earned).toFixed(2)
+                                        ))} USD</p>
+                                        <p>Last Update: {moment(zoan.updatedAt).format("LLL")}</p>
+                                    </div>
+                                    <div className="card-footer border-warning mb-3">
+                                        <div className="btn-2 mb-2">
+                                            <Link to={"/zoan/" + zoan._id} className="btn btn-warning bi bi-eye-fill"> View Fights</Link>
+                                            <Link to={"/createfight/" + zoan._id} className="btn btn-warning bi bi-plus-circle-fill"> Add Fight</Link>
                                         </div>
-                                        <img alt="ZoanImg" src={getZoanImg(zoan.name)} className="card-img" />
-                                        <div className="card-body">
-                                            <h1 className="card-title"> {zoan.name} </h1>
-                                            <p> Rare: {zoan.rarity}</p>
-                                            <p> Tribe: {zoan.tribe}</p>
-                                            <p> Level: {getZoanLvl(zoan.exp_earned)} / {zoan.exp_earned.toFixed(2)} exp</p>
-                                            <p> Class: {zoan.name} </p>
-                                            <p> Zoon Earned: {zoan.zoon_earned.toFixed(2)} | {this.state.cryptozoon_data.map(coin => (
-                                                (coin.current_price * zoan.zoon_earned).toFixed(2)
-                                            ))} USD</p>
-                                            <p>Last Update: {moment(zoan.updatedAt).format("LLL")}</p>
-                                        </div>
-                                        <div className="card-footer border-warning mb-3">
-                                            <div className="btn-2 mb-2">
-                                                <Link to={"/zoan/" + zoan._id} className="btn btn-warning bi bi-eye-fill"> View Fights</Link>
-                                                <Link to={"/createfight/" + zoan._id} className="btn btn-warning bi bi-plus-circle-fill"> Add Fight</Link>
-                                            </div>
-                                            <button className="btn btn-danger bi bi-trash" onClick={() => this.deleteZoan(zoan._id)}> Delete</button>
-                                            <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoan._id, zoan.zoon_earned)}> Reset Funds</button>
-                                        </div>
+                                        <button className="btn btn-danger bi bi-trash" onClick={() => this.deleteZoan(zoan._id)}> Delete</button>
+                                        <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoan._id, zoan.zoon_earned)}> Reset Funds</button>
                                     </div>
                                 </div>
-                            ))
-                        }
-                    </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         )

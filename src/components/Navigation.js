@@ -20,7 +20,7 @@ export default class Navigation extends Component {
     render() {
         return (
             <Navbar bg="dark" variant={"dark"} expand="lg">
-                <Navbar.Brand>Gestor de Zoon - 3.0</Navbar.Brand>
+                <Navbar.Brand>Gestor de Zoon - 3.1</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
