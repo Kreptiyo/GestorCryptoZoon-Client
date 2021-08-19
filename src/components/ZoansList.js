@@ -37,7 +37,8 @@ export default class ZoansList extends Component {
 
     state = {
         zoans: [],
-        cryptozoon_data: []
+        cryptozoon_data: [],
+        loaded: true
     }
 
 
@@ -52,10 +53,12 @@ export default class ZoansList extends Component {
     }
 
     getZoans = async () => {
+        this.setState({ loaded: false });
         const res = await axios.get('https://gestor-cryptozoon.herokuapp.com/api/zoans')
         this.setState({
             zoans: res.data
         });
+        this.setState({ loaded: true });
     }
 
     deleteZoan = async (zoanId) => {
@@ -79,6 +82,7 @@ export default class ZoansList extends Component {
 
     render() {
         return (
+            this.state.loaded?
             <div className="container">
                 <div className="justify-content-center row">
                     {
@@ -114,6 +118,12 @@ export default class ZoansList extends Component {
                     }
                 </div>
             </div>
+            :
+            <div class="d-flex justify-content-center">
+            <div class="spinner-border text-warning m-5" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         )
     }
 }
