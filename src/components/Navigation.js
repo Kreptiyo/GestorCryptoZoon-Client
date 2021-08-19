@@ -31,17 +31,17 @@ export default class Navigation extends Component {
                         <Nav.Link as={Link} to="/zoans" className="bi bi-people-fill"> Zoans</Nav.Link>
                         <Nav.Link as={Link} to="/createzoan" className="bi bi-person-plus-fill"> New Zoan</Nav.Link>
                         <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
-                        <li className="nav-link bi bi-currency-dollar" style={{ color: 'orange' }}>
-                            Zoon Price: USD '
-                            {
-                                this.state.cryptozoon_data.map(coin => (
-                                    coin.current_price
-                                ))
-                            }
-                            '
-                        </li>
                     </Nav>
+                    <span className="precio-zoon bi bi-currency-dollar" style={{ color: 'orange' }}>
 
+                        Zoon Price: USD '
+                        {
+                            this.state.cryptozoon_data.map(coin => (
+                                coin.current_price
+                            ))
+                        }
+                        '
+                    </span>
                 </Navbar.Collapse>
             </Navbar>
         )
