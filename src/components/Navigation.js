@@ -19,18 +19,26 @@ export default class Navigation extends Component {
 
     render() {
         return (
-            <Navbar bg="dark" variant={"dark"} expand="lg">
-                <Navbar.Brand>Gestor de Zoon - 3.1</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
+            <Navbar collapseOnSelect bg="dark" variant={"dark"} expand="lg">
+                <Navbar.Brand> Gestor de Zoon - 3.1</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav
-                        className="mr-auto my-2 my-lg-0"
-                        style={{ maxHeight: '145px' }}
+                        className="justify-content-center"
+                        style={{ flex: 1 }}
                         navbarScroll>
-                        <Nav.Link as={Link} to="/" className="bi bi-list-stars"> Fights List</Nav.Link>
-                        <Nav.Link as={Link} to="/zoans" className="bi bi-people-fill"> Zoans</Nav.Link>
-                        <Nav.Link as={Link} to="/createzoan" className="bi bi-person-plus-fill"> New Zoan</Nav.Link>
-                        <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/" className="bi bi-list-stars"> Fights List</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/zoans" className="bi bi-people-fill"> Zoans</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/createzoan" className="bi bi-person-plus-fill"> New Zoan</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
+                        </Nav.Item>
                     </Nav>
                     <span className="precio-zoon bi bi-currency-dollar" style={{ color: 'orange' }}>
 
