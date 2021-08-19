@@ -8,7 +8,7 @@ const getZoanImg = criterio => {
         return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_2.gif';
     }
     if (criterio === "Rabbit") {
-        return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_1.gif';
+        return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_3.gif';
     }
 }
 
