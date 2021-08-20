@@ -4,8 +4,9 @@ import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment';
 
+
 function DailyEarningsChart() {
-    
+
     const [graph, setGraph] = useState([]);
 
     const selectChart = (e) => {
@@ -16,13 +17,13 @@ function DailyEarningsChart() {
                 let earningName = [];
                 earningsData.forEach(element => {
                     dayName.push(moment(element.createdAt).format('ll') + ' - ' + element.zoan_id);
-                    earningName.push(element.zoon * 0.033);
+                    earningName.push(element.zoon * 0.03);
                 });
                 setGraph({
                     labels: dayName,
                     datasets: [
                         {
-                            label:'In Dollars',
+                            label: 'In Dollars',
                             backgroundColor: [
                                 '#66B2FF',
                                 '#663300',
@@ -45,7 +46,7 @@ function DailyEarningsChart() {
             <div className="row mt-3">
                 <div className="col-sm-1">
                 </div>
-                <div className="col-sm-10" style={{background: 'white'}}>
+                <div className="col-sm-10" style={{ background: 'white' }}>
                     <Bar
                         data={graph}
                         options={{
