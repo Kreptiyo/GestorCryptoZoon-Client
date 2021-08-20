@@ -35,9 +35,6 @@ export default class Navigation extends Component {
                             <Nav.Link as={Link} to="/zoans" className="bi bi-people-fill"> Zoans</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={Link} to="/createzoan" className="bi bi-person-plus-fill"> New Zoan</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
                             <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>

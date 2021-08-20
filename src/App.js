@@ -27,7 +27,6 @@ function App() {
               <div className="container">
                 <Route path="/" exact component={FightsList} />
                 <Route path="/createfight/:zoan_id" component={CreateFight} />
-                <Route path="/createzoan" component={CreateZoan} />
                 <Route path="/zoans" component={ZoansList} />
                 <Route path="/zoan/:zoan_id" component={FightsList} />
                 <Route path="/dailyearnings" component={DailyEarnings} />
