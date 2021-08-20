@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 function getZoanImg(criterio, exp) {
-    console.log("experiencia:" + exp);
     if (criterio === "Mushroom") {
         if (getZoanLvl(exp) <= 1) {
             return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_1.gif';
@@ -130,9 +129,9 @@ export default class ZoansList extends Component {
                     </div>
                 </div>
                 :
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border text-warning m-5" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-warning m-5" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
         )

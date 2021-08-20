@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import { LogoutButton } from './Logout';
 
 export default class Navigation extends Component {
     state = {
@@ -38,6 +39,12 @@ export default class Navigation extends Component {
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/dailyearningschart" className="bi bi-cash-coin"> Daily Earnings Chart</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <LogoutButton />
                         </Nav.Item>
                     </Nav>
                     <span className="precio-zoon bi bi-currency-dollar" style={{ color: 'orange' }}>

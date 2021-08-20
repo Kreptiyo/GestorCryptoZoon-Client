@@ -98,9 +98,9 @@ export default class FightsList extends Component {
                     </div>
                 </div>
                 :
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border text-warning m-5" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-warning m-5" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
         )
