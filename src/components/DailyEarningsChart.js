@@ -15,7 +15,7 @@ function DailyEarningsChart() {
                 let dayName = [];
                 let earningName = [];
                 earningsData.forEach(element => {
-                    dayName.push(moment(element.createdAt).format('ll') + ' - ' + element._id);
+                    dayName.push(moment(element.createdAt).format('ll') + ' - ' + element.zoan_id);
                     earningName.push(element.zoon * 0.033);
                 });
                 setGraph({
@@ -24,9 +24,9 @@ function DailyEarningsChart() {
                         {
                             label:'In Dollars',
                             backgroundColor: [
-                                'red',
-                                'green',
-                                'blue'
+                                '#66B2FF',
+                                '#663300',
+                                '#FF0000'
                             ],
                             borderWidth: 0,
                             data: earningName

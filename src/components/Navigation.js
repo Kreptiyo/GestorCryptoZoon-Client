@@ -21,7 +21,7 @@ export default class Navigation extends Component {
     render() {
         return (
             <Navbar collapseOnSelect bg="dark" variant={"dark"} expand="lg">
-                <Navbar.Brand> Gestor de Zoon - 3.1</Navbar.Brand>
+                <Navbar.Brand> Gestor de Zoon - 3.2</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav
