@@ -31,7 +31,7 @@ function App() {
                 <Route path="/zoans" component={ZoansList} />
                 <Route path="/zoan/:zoan_id" component={FightsList} />
                 <Route path="/dailyearnings" component={DailyEarnings} />
-                <Route path="/dailyearningschart" component={DailyEarningsChart} />1
+                <Route path="/dailyearningschart" component={DailyEarningsChart} />
               </div>
             </Router>
           </>

@@ -41,7 +41,7 @@ export default class Navigation extends Component {
                             <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={Link} to="/dailyearningschart" className="bi bi-cash-coin"> Daily Earnings Chart</Nav.Link>
+                            <Nav.Link as={Link} to="/dailyearningschart" className="bi bi-bar-chart"> Daily Earnings Chart</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <LogoutButton />
