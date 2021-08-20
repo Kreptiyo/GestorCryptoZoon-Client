@@ -10,7 +10,6 @@ import Navigation from './components/Navigation';
 import FightsList from './components/FightsList';
 import ZoansList from './components/ZoansList';
 import CreateFight from './components/CreateFight';
-import CreateZoan from './components/CreateZoan';
 import DailyEarnings from './components/DailyEarnings';
 import DailyEarningsChart from './components/DailyEarningsChart';
 
