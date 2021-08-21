@@ -78,11 +78,11 @@ export default class ZoansList extends Component {
         }
     }
 
-    resetZoonEarned = async (zoanId, zoon_earned) => {
+    resetZoonEarned = async (zoanIdcustom, zoanId, zoon_earned) => {
         if (window.confirm('Are you sure you want to reset the funds of this zoan?')) {
             await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/resetzoonearned/' + zoanId);
             const newEarning = {
-                zoan_id: zoanId,
+                zoan_id: zoanIdcustom,
                 zoon: zoon_earned
             };
             await axios.post('https://gestor-cryptozoon.herokuapp.com/api/earnings', newEarning);
@@ -119,7 +119,7 @@ export default class ZoansList extends Component {
                                                 <Link to={"/zoan/" + zoan._id} className="btn btn-warning bi bi-eye-fill"> View Fights</Link>
                                                 <Link to={"/createfight/" + zoan._id} className="btn btn-warning bi bi-plus-circle-fill"> Add Fight</Link>
                                             </div>
-                                            <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoan.id_custom, zoan.zoon_earned)}> Reset Funds</button>
+                                            <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoan.id_custom, zoan._id, zoan.zoon_earned)}> Reset Funds</button>
                                         </div>
                                     </div>
                                 </div>
