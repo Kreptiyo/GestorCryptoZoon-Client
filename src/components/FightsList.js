@@ -28,13 +28,13 @@ export default class FightsList extends Component {
 
     state = {
         fights: [],
-        loaded: true
+        loaded: true,
+        user: []
     }
 
     async componentDidMount() {
         this.getFights();
     }
-
 
     getFights = async () => {
         if (this.props.match.params.zoan_id != null) {
@@ -105,4 +105,4 @@ export default class FightsList extends Component {
                 </div>
         )
     }
-}
+};
