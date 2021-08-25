@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { CSVLink } from "react-csv";
 import moment from 'moment';
 
 const getResultIcon = criterio => {
@@ -28,8 +27,7 @@ export default class FightsList extends Component {
 
     state = {
         fights: [],
-        loaded: true,
-        user: []
+        loaded: true
     }
 
     async componentDidMount() {
@@ -63,9 +61,8 @@ export default class FightsList extends Component {
         return (
             this.state.loaded ?
                 <div className="container">
-                    <CSVLink filename={"Fights_List.csv"} data={this.state.fights} className="btn btn-warning btn-4 bi bi-cloud-arrow-down-fill"> Export to CSV </CSVLink>
                     <div className="table-responsive-sm">
-                        <table className="table table-dark table-hover table-bordered">
+                        <table className="table table-dark table-hover table-bordered tabla-peleas">
                             <thead>
                                 <tr>
                                     <th><div style={{ textAlign: "center" }}>Date</div></th>

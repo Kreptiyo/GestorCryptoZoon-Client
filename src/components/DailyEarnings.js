@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { CSVLink } from "react-csv";
 import moment from 'moment';
 
 export default class DailyEarnings extends Component {
@@ -43,13 +42,11 @@ export default class DailyEarnings extends Component {
             this.state.loaded ?
                 <div className="container">
                     <h1 className="text-flame"> Daily Earnings </h1>
-                    <CSVLink filename={"Daily_Earnings_List.csv"} data={this.state.earnings} className="btn btn-warning btn-4 bi bi-cloud-arrow-down-fill"> Export to CSV </CSVLink>
                     <div className="table-responsive-sm">
-                        <table className="table table-dark table-hover table-bordered">
+                        <table className="table table-dark table-hover table-bordered tabla-peleas">
                             <thead>
                                 <tr>
                                     <th><div style={{ textAlign: "center" }}>Date</div></th>
-                                    <th><div style={{ textAlign: "center" }}>Zoan ID</div></th>
                                     <th><div style={{ textAlign: "center" }}>Zoon Earned</div></th>
                                     <th><div style={{ textAlign: "center" }}>Zoon to USD</div></th>
                                     <th><div style={{ textAlign: "center" }}>Actions</div></th>
@@ -61,7 +58,6 @@ export default class DailyEarnings extends Component {
                                         return (
                                             <tr key={earning._id}>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(earning.createdAt).format("LLL")}</div></td>
-                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoan_id}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon.toFixed(2)}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.cryptozoon_data.map(coin => ((coin.current_price * earning.zoon).toFixed(2)))}</div></td>
                                                 <td><div style={{ textAlign: "center" }}><button onClick={() => this.deleteEarning(earning._id)} className="btn btn-warning bi bi-trash">Delete</button></div></td>
@@ -74,7 +70,7 @@ export default class DailyEarnings extends Component {
                     </div>
                 </div>
                 :
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center ">
                     <div className="spinner-border text-warning m-5" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </div>

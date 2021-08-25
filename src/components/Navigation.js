@@ -21,7 +21,7 @@ export default class Navigation extends Component {
     render() {
         return (
             <Navbar collapseOnSelect bg="dark" variant={"dark"} expand="lg">
-                <Navbar.Brand> Gestor de Zoon - 3.2</Navbar.Brand>
+                <Navbar.Brand> Gestor de Zoon 3.0</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav
@@ -29,16 +29,19 @@ export default class Navigation extends Component {
                         style={{ flex: 1 }}
                         navbarScroll>
                         <Nav.Item>
-                            <Nav.Link as={Link} to="/" className="bi bi-list-stars"> Fights List</Nav.Link>
+                            <Nav.Link as={Link} to="/" className="bi bi-list-stars custommarginnavigation"> Fights List</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={Link} to="/zoans" className="bi bi-people-fill"> Zoans</Nav.Link>
+                            <Nav.Link as={Link} to="/zoans" className="bi bi-people-fill custommarginnavigation"> Zoans</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin"> Daily Earnings</Nav.Link>
+                            <Nav.Link as={Link} to="/dailyearnings" className="bi bi-cash-coin custommarginnavigation"> Daily Earnings</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={Link} to="/dailyearningschart" className="bi bi-bar-chart"> Daily Earnings Chart</Nav.Link>
+                            <Nav.Link as={Link} to="/stats" className="bi bi-bar-chart-line custommarginnavigation"> Stats</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/createzoan"><button className="btn btn-light bi bi-person-plus-fill addzoan"> New Zoan</button></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <LogoutButton />

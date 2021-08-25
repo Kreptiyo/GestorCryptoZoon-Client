@@ -2,22 +2,70 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 
 function getZoanImg(criterio, exp) {
     if (criterio === "Mushroom") {
-        if (getZoanLvl(exp) <= 1) {
+        if (getZoanLvl(exp) === 1) 
+        {
             return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_1.gif';
         }
-        else if (getZoanLvl(exp) >= 3) {
+        else if ( getZoanLvl(exp) === 2)
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_1.gif';
+        }
+        else if (getZoanLvl(exp) === 3) 
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_2.gif';
+        }
+        else if (getZoanLvl(exp) === 4) 
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_2.gif';
+        }
+        else if (getZoanLvl(exp) === 5) 
+        {
             return 'https://raw.githubusercontent.com/cryptozoon/images/master/Mushroom_2.gif';
         }
     }
     if (criterio === "Rabbit") {
-        if (getZoanLvl(exp) <= 1) {
+        if (getZoanLvl(exp) === 1) 
+        {
             return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_1.gif';
         }
-        if (getZoanLvl(exp) >= 3) {
+        if (getZoanLvl(exp) === 2) 
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_1.gif';
+        }
+        if (getZoanLvl(exp) === 3) {
             return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_3.gif'
+        }
+        if (getZoanLvl(exp) === 4) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_3.gif'
+        }
+        if (getZoanLvl(exp) === 5) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/Rabbit_3.gif'
+        }
+    }
+    if (criterio === "Bombeus") {
+        if (getZoanLvl(exp) === 1) 
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/v2/turtle1_idle.gif';
+        }
+        if (getZoanLvl(exp) === 2) 
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/v2/turtle1_idle.gif';
+        }
+        if (getZoanLvl(exp) === 3) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/v2/turtle2_idle.gif'
+        }
+        if (getZoanLvl(exp) === 4) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/v2/turtle2_idle.gif'
+        }
+        if (getZoanLvl(exp) === 5) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/v2/turtle3_idle.gif'
+        }
+        if (getZoanLvl(exp) === 6) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/v2/turtle3_idle.gif'
         }
     }
 }
@@ -78,22 +126,53 @@ export default class ZoansList extends Component {
         }
     }
 
-    resetZoonEarned = async (zoanIdcustom, zoanId, zoon_earned) => {
-        if (window.confirm('Are you sure you want to reset the funds of this zoan?')) {
-            await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/resetzoonearned/' + zoanId);
-            const newEarning = {
-                zoan_id: zoanIdcustom,
-                zoon: zoon_earned
-            };
-            await axios.post('https://gestor-cryptozoon.herokuapp.com/api/earnings', newEarning);
-            this.props.history.push('/dailyearnings');
-        }
+    resetZoonEarned = (zoon_earned) => {
+            Swal.fire({
+                text: 'Do you want to reset the funds of this Zoan?',
+                icon: 'question',
+                showDenyButton: true,
+                confirmButtonText: 'Yes'
+              }).then(( async result => {
+                  if(result.isConfirmed)
+                  {
+                    await axios.patch('https://gestor-cryptozoon.herokuapp.com/api/zoans/resetzoonearned');
+                    const newEarning = {
+                        zoon: zoon_earned
+                    };
+                    await axios.post('https://gestor-cryptozoon.herokuapp.com/api/earnings', newEarning);
+                    Swal.fire({
+                        title: 'Funds reseted succesfully!',
+                        text: 'Go to Daily Earnings updated?',
+                        icon: 'success',
+                        showDenyButton: true,
+                        confirmButtonText: 'Yes'
+                    }).then(( result => {
+                        if(result.isConfirmed)
+                        {
+                            this.props.history.push('/dailyearnings');
+                        }
+                        else if(result.isDenied)
+                        {
+                            this.getZoans();
+                        }
+                    }))
+                  }
+                  else if(result.isDenied)
+                  {
+                      Swal.fire('Zoan funds are not reseted', '', 'info');
+                  }
+              }))
     }
 
     render() {
+        let zoon_ganado = 0;
+        this.state.zoans.forEach(zoan => {
+            zoon_ganado += zoan.zoon_earned;
+        })
         return (
             this.state.loaded ?
                 <div className="container">
+                    <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoon_ganado)}> Reset Funds</button>
                     <div className="justify-content-center row">
                         {
                             this.state.zoans.map(zoan => (
@@ -108,7 +187,6 @@ export default class ZoansList extends Component {
                                             <p> Rare: {zoan.rarity}</p>
                                             <p> Tribe: {zoan.tribe}</p>
                                             <p> Level: {getZoanLvl(zoan.exp_earned)} / {zoan.exp_earned.toFixed(2)} exp</p>
-                                            <p> Class: {zoan.name} </p>
                                             <p> Zoon Earned: {zoan.zoon_earned.toFixed(2)} | {this.state.cryptozoon_data.map(coin => (
                                                 (coin.current_price * zoan.zoon_earned).toFixed(2)
                                             ))} USD</p>
@@ -119,7 +197,6 @@ export default class ZoansList extends Component {
                                                 <Link to={"/zoan/" + zoan._id} className="btn btn-warning bi bi-eye-fill"> View Fights</Link>
                                                 <Link to={"/createfight/" + zoan._id} className="btn btn-warning bi bi-plus-circle-fill"> Add Fight</Link>
                                             </div>
-                                            <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoan.id_custom, zoan._id, zoan.zoon_earned)}> Reset Funds</button>
                                         </div>
                                     </div>
                                 </div>

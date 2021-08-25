@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default class CreateFight extends Component {
 
@@ -29,7 +30,28 @@ export default class CreateFight extends Component {
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
-        this.props.history.push('/zoan/' + this.props.match.params.zoan_id);
+        Swal.fire({
+            title: 'Fight saved succesfully!',
+            text: 'Do you want to add another fight?',
+            icon: 'success',
+            showDenyButton: true,
+            confirmButtonText: 'Yes'
+        }).then(result => {
+            if(result.isDenied)
+            {
+                this.props.history.push('/zoan/' + this.props.match.params.zoan_id);
+            }
+            else if(result.isConfirmed)
+            {
+                this.setState({
+                    zoon: '',
+                    exp: '',
+                    result: 'Victory',
+                    fee: '',
+                    monster: 'Undead Warrior'
+                })
+            }
+        })
     };
 
     onInputChange = (e) => {
@@ -44,9 +66,9 @@ export default class CreateFight extends Component {
 
     render() {
         return (
-            <div className="container" style={{ width: 400 }}>
-                <h1 className="text-flame">New Fight</h1>
-                <div className="row">
+            <div className="container">
+                <h1 className="text-flame">New Fight - {this.props.match.params.zoan_id}</h1>
+                <div className="card-myzoan" style={{ width: 400 }}>
                     <div className="card card-body bg-dark mb-3 border-warning mb-3">
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
@@ -58,7 +80,7 @@ export default class CreateFight extends Component {
                                 </div>
                                 <div className="mb-3">
                                     <div className="form-floating">
-                                        <select className="form-select" value={this.state.result} onChange={this.onInputChange} name="result" id="floatingSelect" aria-label="Floating label select example" required>
+                                        <select className="form-select" value={this.state.result} onChange={this.onInputChange} name="result" id="floatingSelectResult" aria-label="Floating label select example" required>
                                             <option value="Victory">Victory</option>
                                             <option value="Defeat">Defeat</option>
                                         </select>
@@ -70,7 +92,7 @@ export default class CreateFight extends Component {
                                 </div>
                                 <div className="mb-3">
                                     <div className="form-floating">
-                                        <select className="form-select" value={this.state.monster} onChange={this.onInputChange} name="monster" id="floatingSelect" aria-label="Floating label select example" required>
+                                        <select className="form-select" value={this.state.monster} onChange={this.onInputChange} name="monster" id="floatingSelectMonster" aria-label="Floating label select example" required>
                                             <option value="Undead Warrior">Undead Warrior</option>
                                             <option value="Zombie">Zombie</option>
                                             <option value="Mummy">Mummy</option>
