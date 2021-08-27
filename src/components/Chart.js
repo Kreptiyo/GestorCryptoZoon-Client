@@ -13,13 +13,13 @@ const Chart = () => {
       .then(res => {
         for (const dataObj of res.data) {
           earnDay.push(moment(dataObj.createdAt).format('ll'));
-          earnZoon.push(parseInt(0.075 * dataObj.zoon));
+          earnZoon.push(parseInt(dataObj.zoon));
         }
         setChartData({
           labels: earnDay,
           datasets: [
             {
-              label: "Zoon a USD",
+              label: "Zoon",
               data: earnZoon,
               backgroundColor: ["rgba(255, 109, 0, 1)"],
               borderWidth: 4
@@ -48,9 +48,6 @@ const Chart = () => {
                   autoSkip: true,
                   maxTicksLimit: 10,
                   beginAtZero: true,
-                  callback: function(value, index, values){
-                    return '$' + value;
-                  }
                 }
               },
               x: {

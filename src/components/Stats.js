@@ -9,11 +9,13 @@ export default class Stats extends Component {
     state = {
         fights: [],
         earnings: [],
-        cryptozoon_data: []
+        cryptozoon_data: [],
+        bnb_data: []
     }
 
     async componentDidMount() {
         this.getCryptoZoonData();
+        this.getBNBData();
         this.getFights();
         this.getEarnings();
     }
@@ -21,6 +23,11 @@ export default class Stats extends Component {
     getCryptoZoonData = async () => {
         const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
         this.setState({ cryptozoon_data: res.data });
+    }
+
+    getBNBData = async () => {
+        const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=binancecoin&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        this.setState({ bnb_data: res.data });
     }
 
     getFights = async () => {
@@ -37,8 +44,10 @@ export default class Stats extends Component {
 
     render() {
         let zoon_total_ganado = 0;
+        let gas_fee = 0;
         this.state.fights.forEach(fight => {
             zoon_total_ganado += fight.zoon;
+            gas_fee += fight.fee;
         })
         let zoon_perday = 0;
         let days = 0;
@@ -60,7 +69,7 @@ export default class Stats extends Component {
                                 </small>
                                 <br />
                                 <strong className="h4">
-                                    {zoon_total_ganado}
+                                    {zoon_total_ganado.toFixed(2)}
                                 </strong>
                                 <br />
                                 <small className="text-muted">
@@ -73,7 +82,7 @@ export default class Stats extends Component {
                         <div className="col-sm-12 col-md-3 col-lg-3">
                             <div className="c-callout c-callout-info">
                                 <small className="text-muted">
-                                    Avg. Zoon Earned per Day
+                                    Zoon Promedio por Día
                                 </small>
                                 <br />
                                 <strong className="h4">
@@ -90,7 +99,7 @@ export default class Stats extends Component {
                         <div className="col-sm-12 col-md-3 col-lg-3">
                             <div className="c-callout c-callout-info">
                                 <small className="text-muted">
-                                    Avg. Zoon Earned per Week
+                                    Zoon Promedio por Semana
                                 </small>
                                 <br />
                                 <strong className="h4">
@@ -107,7 +116,7 @@ export default class Stats extends Component {
                         <div className="col-sm-12 col-md-3 col-lg-3">
                             <div className="c-callout c-callout-info">
                                 <small className="text-muted">
-                                    Avg. Zoon Earned per Month
+                                    Zoon Promedio por Mes
                                 </small>
                                 <br />
                                 <strong className="h4">
@@ -117,6 +126,23 @@ export default class Stats extends Component {
                                 <small className="text-muted">
                                     $  {this.state.cryptozoon_data.map(coin => (
                                        (coin.current_price * ((zoon_perday / days)*30)).toFixed(2)
+                                    ))}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 col-md-3 col-lg-3">
+                            <div className="c-callout c-callout-info">
+                                <small className="text-muted">
+                                    Gas Fee BNB
+                                </small>
+                                <br />
+                                <strong className="h4">
+                                    {gas_fee.toFixed(4)}
+                                </strong>
+                                <br />
+                                <small className="text-muted">
+                                    $  {this.state.bnb_data.map(coin => (
+                                        (coin.current_price * gas_fee).toFixed(2)
                                     ))}
                                 </small>
                             </div>
