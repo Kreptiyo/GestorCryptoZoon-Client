@@ -147,12 +147,23 @@ export default class Stats extends Component {
                                 </small>
                             </div>
                         </div>
+                        <div className="col-sm-12 col-md-3 col-lg-3">
+                            <div className="c-callout c-callout-info">
+                                <small className="text-muted">
+                                    Ganancia Neta
+                                </small>
+                                <br />
+                                <strong className="h4">
+                                    $ {this.state.cryptozoon_data.map(zoon => (this.state.bnb_data.map(bnb => (zoon_total_ganado*zoon.current_price - gas_fee*bnb.current_price).toFixed(2))))} USD
+                                </strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="card-footer">
-                Grafica Ganancias Diarias
-                    <Chart/>
+                Ganancias Diarias
                 </div>
+                <Chart/>
             </div>
         )
     }
