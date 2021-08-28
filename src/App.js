@@ -13,6 +13,7 @@ import CreateFight from './components/CreateFight';
 import CreateZoan from './components/CreateZoan';
 import DailyEarnings from './components/DailyEarnings';
 import Stats from './components/Stats';
+import FightsTableUI from './components/FightsTableUI';
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -25,7 +26,7 @@ function App() {
             <Router>
               <Navigation />
               <div className="container">
-                <Route path="/" exact component={FightsList} />
+                <Route path="/" exact component={FightsTableUI} />
                 <Route path="/createfight/:zoan_id" component={CreateFight} />
                 <Route path="/zoans" component={ZoansList} />
                 <Route path="/zoan/:zoan_id" component={FightsList} />
