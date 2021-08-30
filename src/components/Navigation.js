@@ -41,9 +41,6 @@ export default class Navigation extends Component {
                             <Nav.Link as={Link} to="/stats" className="bi bi-bar-chart-line custommarginnavigation"> Stats</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={Link} to="/createzoan"><button className="btn btn-light bi bi-person-plus-fill addzoan"> New Zoan</button></Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
                             <LogoutButton />
                         </Nav.Item>
                     </Nav>

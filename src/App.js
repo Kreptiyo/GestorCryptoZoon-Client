@@ -10,7 +10,6 @@ import Navigation from './components/Navigation';
 import FightsList from './components/FightsList';
 import ZoansList from './components/ZoansList';
 import CreateFight from './components/CreateFight';
-import CreateZoan from './components/CreateZoan';
 import DailyEarnings from './components/DailyEarnings';
 import Stats from './components/Stats';
 import FightsTableUI from './components/FightsTableUI';
@@ -31,7 +30,6 @@ function App() {
                 <Route path="/zoans" component={ZoansList} />
                 <Route path="/zoan/:zoan_id" component={FightsList} />
                 <Route path="/dailyearnings" component={DailyEarnings} />
-                <Route path="/createzoan" component={CreateZoan} />
                 <Route path="/stats" component={Stats} />
               </div>
             </Router>

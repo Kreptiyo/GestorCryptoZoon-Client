@@ -71,7 +71,6 @@ export default class FightsList extends Component {
                                     <th><div style={{ textAlign: "center" }}>Result</div></th>
                                     <th><div style={{ textAlign: "center" }}>Fee</div></th>
                                     <th><div style={{ textAlign: "center" }}>Monster</div></th>
-                                    <th><div style={{ textAlign: "center" }}>Actions</div></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,7 +84,6 @@ export default class FightsList extends Component {
                                                 <td><div style={{ textAlign: "center" }}><button className={getResultIcon(fight.result)}>{fight.result}</button></div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.fee}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.monster}</div></td>
-                                                <td><div style={{ textAlign: "center" }}><button onClick={() => this.deleteFight(fight._id)} className="btn btn-warning bi bi-trash">Delete</button></div></td>
                                             </tr>
                                         )
                                     })
