@@ -6,10 +6,11 @@ export default class CreateFight extends Component {
 
     state = {
         zoon: '',
+        yag: '',
         exp: '',
         result: 'Victory',
         fee: '',
-        monster: 'Undead Warrior',
+        monster: 'Spiny Snail',
         _id: ''
     }
 
@@ -19,6 +20,7 @@ export default class CreateFight extends Component {
             zoan_id: this.props.match.params.zoan_id,
             date: Date.now(),
             zoon: this.state.zoon,
+            yag: this.state.yag,
             exp: this.state.exp,
             result: this.state.result,
             fee: this.state.fee,
@@ -27,6 +29,7 @@ export default class CreateFight extends Component {
         await axios.post('https://gestor-cryptozoon.herokuapp.com/api/fights', newFight);
         const newInfo = {
             zoon_earned: this.state.zoon,
+            yag_earned: this.state.yag,
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
@@ -37,18 +40,17 @@ export default class CreateFight extends Component {
             showDenyButton: true,
             confirmButtonText: 'Yes'
         }).then(result => {
-            if(result.isDenied)
-            {
-                this.props.history.push('/zoan/' + this.props.match.params.zoan_id);
+            if (result.isDenied) {
+                this.props.history.push('/zoans');
             }
-            else if(result.isConfirmed)
-            {
+            else if (result.isConfirmed) {
                 this.setState({
                     zoon: '',
+                    yag: '',
                     exp: '',
                     result: 'Victory',
                     fee: '',
-                    monster: 'Undead Warrior'
+                    monster: 'Spiny Snail'
                 })
             }
         })
@@ -76,6 +78,9 @@ export default class CreateFight extends Component {
                                     <input type="number" className="form-control" onChange={this.onInputChange} name="zoon" placeholder="Zoon" value={this.state.zoon} required />
                                 </div>
                                 <div className="mb-3">
+                                    <input type="number" className="form-control" onChange={this.onInputChange} name="yag" placeholder="Yag" value={this.state.yag} required />
+                                </div>
+                                <div className="mb-3">
                                     <input type="number" className="form-control" onChange={this.onInputChange} name="exp" placeholder="Exp" value={this.state.exp} required />
                                 </div>
                                 <div className="mb-3">
@@ -93,12 +98,12 @@ export default class CreateFight extends Component {
                                 <div className="mb-3">
                                     <div className="form-floating">
                                         <select className="form-select" value={this.state.monster} onChange={this.onInputChange} name="monster" id="floatingSelectMonster" aria-label="Floating label select example" required>
-                                            <option value="Undead Warrior">Undead Warrior</option>
-                                            <option value="Zombie">Zombie</option>
-                                            <option value="Mummy">Mummy</option>
-                                            <option value="Skeleton Swordsman">Skeleton Swordsman</option>
-                                            <option value="Skeleton Pirate">Skeleton Pirate</option>
-                                            <option value="Skeleton Captain">Skeleton Captain</option>
+                                            <option value="Spiny Snail">Spiny Snail</option>
+                                            <option value="Batie">Batie</option>
+                                            <option value="Bone Welder">Bone Welder</option>
+                                            <option value="Blinker">Blinker</option>
+                                            <option value="Riptide">Riptide</option>
+                                            <option value="Hell Bogger">Hell Bogger</option>
                                         </select>
                                         <label htmlFor="floatingSelect">Select a Monster</label>
                                     </div>

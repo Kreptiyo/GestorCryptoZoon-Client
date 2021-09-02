@@ -10,11 +10,13 @@ export default class Stats extends Component {
         fights: [],
         earnings: [],
         cryptozoon_data: [],
+        yakigold_data: [],
         bnb_data: []
     }
 
     async componentDidMount() {
         this.getCryptoZoonData();
+        this.getYakiGoldData();
         this.getBNBData();
         this.getFights();
         this.getEarnings();
@@ -23,6 +25,11 @@ export default class Stats extends Component {
     getCryptoZoonData = async () => {
         const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
         this.setState({ cryptozoon_data: res.data });
+    }
+
+    getYakiGoldData = async () => {
+        const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=yaki-gold&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        this.setState({ yakigold_data: res.data });
     }
 
     getBNBData = async () => {
@@ -50,9 +57,11 @@ export default class Stats extends Component {
             gas_fee += fight.fee;
         })
         let zoon_perday = 0;
+        let yag_perday = 0;
         let days = 0;
         this.state.earnings.forEach(earning => {
             zoon_perday += earning.zoon;
+            yag_perday += earning.yag;
             days++;
         })
         return (
@@ -143,6 +152,40 @@ export default class Stats extends Component {
                                 <small className="text-muted">
                                     $  {this.state.bnb_data.map(coin => (
                                         (coin.current_price * gas_fee).toFixed(2)
+                                    ))}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 col-md-3 col-lg-3">
+                            <div className="c-callout c-callout-info">
+                                <small className="text-muted">
+                                    YAG Ganado
+                                </small>
+                                <br />
+                                <strong className="h4">
+                                    {yag_perday.toFixed(2)}
+                                </strong>
+                                <br />
+                                <small className="text-muted">
+                                    $  {this.state.yakigold_data.map(coin => (
+                                        (coin.current_price * yag_perday).toFixed(2)
+                                    ))}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 col-md-3 col-lg-3">
+                            <div className="c-callout c-callout-info">
+                                <small className="text-muted">
+                                    YAG Promedio por Día
+                                </small>
+                                <br />
+                                <strong className="h4">
+                                    {(yag_perday / days).toFixed(2)}
+                                </strong>
+                                <br />
+                                <small className="text-muted">
+                                    $  {this.state.yakigold_data.map(coin => (
+                                        (coin.current_price * (yag_perday / days)).toFixed(2)
                                     ))}
                                 </small>
                             </div>

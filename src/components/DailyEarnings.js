@@ -7,17 +7,24 @@ export default class DailyEarnings extends Component {
     state = {
         earnings: [],
         cryptozoon_data: [],
+        yakigold_data: [],
         loaded: true
     }
 
     async componentDidMount() {
         this.getCryptoZoonData();
+        this.getYakiGoldData();
         this.getEarnings();
     }
 
     getCryptoZoonData = async () => {
         const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
         this.setState({ cryptozoon_data: res.data });
+    }
+
+    getYakiGoldData = async () => {
+        const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=yaki-gold&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        this.setState({ yakigold_data: res.data });
     }
 
     getEarnings = async () => {
@@ -49,6 +56,8 @@ export default class DailyEarnings extends Component {
                                     <th><div style={{ textAlign: "center" }}>Date</div></th>
                                     <th><div style={{ textAlign: "center" }}>Zoon Earned</div></th>
                                     <th><div style={{ textAlign: "center" }}>Zoon to USD</div></th>
+                                    <th><div style={{ textAlign: "center" }}>Yag Earned</div></th>
+                                    <th><div style={{ textAlign: "center" }}>Yag to USD</div></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,6 +68,8 @@ export default class DailyEarnings extends Component {
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(earning.createdAt).format("LLL")}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon.toFixed(2)}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.cryptozoon_data.map(coin => ((coin.current_price * earning.zoon).toFixed(2)))}</div></td>
+                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.yag.toFixed(2)}</div></td>
+                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.yakigold_data.map(coin => ((coin.current_price * earning.yag).toFixed(2)))}</div></td>
                                             </tr>
                                         )
                                     })
