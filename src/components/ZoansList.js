@@ -201,7 +201,7 @@ export default class ZoansList extends Component {
                                                 (coin.current_price * zoan.zoon_earned).toFixed(2)
                                             ))} USD</p>
                                             <p> Yag Earned: {zoan.yag_earned.toFixed(2)} | {this.state.yakigold_data.map(coin => (
-                                                (coin.current_price * zoan.zoon_earned).toFixed(2)
+                                                (coin.current_price * zoan.yag_earned).toFixed(2)
                                             ))} USD</p>
                                             <p>Updated: {moment(zoan.updatedAt).format("LLL")}</p>
                                         </div>
