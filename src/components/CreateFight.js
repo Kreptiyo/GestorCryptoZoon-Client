@@ -20,7 +20,7 @@ export default class CreateFight extends Component {
             zoan_id: this.props.match.params.zoan_id,
             date: Date.now(),
             zoon: this.state.zoon,
-            yag: this.state.yag,
+            yag: this.state.yag * 0.75,
             exp: this.state.exp,
             result: this.state.result,
             fee: this.state.fee,
@@ -29,7 +29,7 @@ export default class CreateFight extends Component {
         await axios.post('https://gestor-cryptozoon.herokuapp.com/api/fights', newFight);
         const newInfo = {
             zoon_earned: this.state.zoon,
-            yag_earned: this.state.yag,
+            yag_earned: this.state.yag * 0.75,
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
