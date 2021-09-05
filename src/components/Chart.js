@@ -6,6 +6,7 @@ import moment from 'moment';
 
 const Chart = () => {
   const [chartData, setChartData] = useState({});
+  const isCancelled = React.useRef(false);
   const chart = () => {
     let earnDay = [];
     let earnZoon = [];
@@ -19,17 +20,19 @@ const Chart = () => {
                 earnDay.push(moment(dataObj.createdAt).format('ll'));
                 earnZoon.push(parseInt(dataObj.yag * zoon.current_price));
               }
-              setChartData({
-                labels: earnDay,
-                datasets: [
-                  {
-                    label: "USD",
-                    data: earnZoon,
-                    backgroundColor: ["rgba(255, 109, 0, 1)"],
-                    borderWidth: 4
-                  }
-                ]
-              });
+              if (!isCancelled.current){
+                setChartData({
+                  labels: earnDay,
+                  datasets: [
+                    {
+                      label: "USD",
+                      data: earnZoon,
+                      backgroundColor: ["rgba(255, 109, 0, 1)"],
+                      borderWidth: 4
+                    }
+                  ]
+                });
+              }
             })
             .catch(err => {
               console.log(err);
@@ -40,6 +43,9 @@ const Chart = () => {
 
 useEffect(() => {
   chart();
+  return () => {
+    isCancelled.current = true;
+  };
 }, []);
 return (
   <div className="App">

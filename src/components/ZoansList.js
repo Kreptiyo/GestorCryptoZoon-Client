@@ -195,7 +195,7 @@ export default class ZoansList extends Component {
         return (
             this.state.loaded ?
                 <div className="container">
-                    <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(yag_ganado)}> Reset Funds</button>
+                    <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(yag_ganado)} style={{marginTop: '10px'}}> Reset Funds</button>
                     <div className="justify-content-center row">
                         {
                             this.state.zoans.map(zoan => (
