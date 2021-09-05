@@ -50,17 +50,15 @@ export default class Stats extends Component {
     }
 
     render() {
-        let zoon_total_ganado = 0;
+        let yag_total_ganado = 0;
         let gas_fee = 0;
         this.state.fights.forEach(fight => {
-            zoon_total_ganado += fight.zoon;
+            yag_total_ganado += fight.yag;
             gas_fee += fight.fee;
         })
-        let zoon_perday = 0;
         let yag_perday = 0;
         let days = 0;
         this.state.earnings.forEach(earning => {
-            zoon_perday += earning.zoon;
             yag_perday += earning.yag;
             days++;
         })
@@ -74,101 +72,16 @@ export default class Stats extends Component {
                         <div className="col-sm-12 col-md-3 col-lg-3">
                             <div className="c-callout c-callout-info">
                                 <small className="text-muted">
-                                    Zoon Ganado
-                                </small>
-                                <br />
-                                <strong className="h4">
-                                    {zoon_total_ganado.toFixed(2)}
-                                </strong>
-                                <br />
-                                <small className="text-muted">
-                                    $  {this.state.cryptozoon_data.map(coin => (
-                                        (coin.current_price * zoon_total_ganado).toFixed(2)
-                                    ))}
-                                </small>
-                            </div>
-                        </div>
-                        <div className="col-sm-12 col-md-3 col-lg-3">
-                            <div className="c-callout c-callout-info">
-                                <small className="text-muted">
-                                    Zoon Promedio por Día
-                                </small>
-                                <br />
-                                <strong className="h4">
-                                    {(zoon_perday / days).toFixed(2)}
-                                </strong>
-                                <br />
-                                <small className="text-muted">
-                                    $  {this.state.cryptozoon_data.map(coin => (
-                                        (coin.current_price * (zoon_perday / days)).toFixed(2)
-                                    ))}
-                                </small>
-                            </div>
-                        </div>
-                        <div className="col-sm-12 col-md-3 col-lg-3">
-                            <div className="c-callout c-callout-info">
-                                <small className="text-muted">
-                                    Zoon Promedio por Semana
-                                </small>
-                                <br />
-                                <strong className="h4">
-                                    {((zoon_perday / days)*7).toFixed(2)}
-                                </strong>
-                                <br />
-                                <small className="text-muted">
-                                    $  {this.state.cryptozoon_data.map(coin => (
-                                        (coin.current_price * ((zoon_perday / days)*7)).toFixed(2)
-                                    ))}
-                                </small>
-                            </div>
-                        </div>
-                        <div className="col-sm-12 col-md-3 col-lg-3">
-                            <div className="c-callout c-callout-info">
-                                <small className="text-muted">
-                                    Zoon Promedio por Mes
-                                </small>
-                                <br />
-                                <strong className="h4">
-                                    {((zoon_perday / days)*30).toFixed(2)}
-                                </strong>
-                                <br />
-                                <small className="text-muted">
-                                    $  {this.state.cryptozoon_data.map(coin => (
-                                       (coin.current_price * ((zoon_perday / days)*30)).toFixed(2)
-                                    ))}
-                                </small>
-                            </div>
-                        </div>
-                        <div className="col-sm-12 col-md-3 col-lg-3">
-                            <div className="c-callout c-callout-info">
-                                <small className="text-muted">
-                                    Gas Fee BNB
-                                </small>
-                                <br />
-                                <strong className="h4">
-                                    {gas_fee.toFixed(4)}
-                                </strong>
-                                <br />
-                                <small className="text-muted">
-                                    $  {this.state.bnb_data.map(coin => (
-                                        (coin.current_price * gas_fee).toFixed(2)
-                                    ))}
-                                </small>
-                            </div>
-                        </div>
-                        <div className="col-sm-12 col-md-3 col-lg-3">
-                            <div className="c-callout c-callout-info">
-                                <small className="text-muted">
                                     YAG Ganado
                                 </small>
                                 <br />
                                 <strong className="h4">
-                                    {yag_perday.toFixed(2)}
+                                    {yag_total_ganado.toFixed(2)}
                                 </strong>
                                 <br />
                                 <small className="text-muted">
                                     $  {this.state.yakigold_data.map(coin => (
-                                        (coin.current_price * yag_perday).toFixed(2)
+                                        (coin.current_price * yag_total_ganado).toFixed(2)
                                     ))}
                                 </small>
                             </div>
@@ -193,11 +106,62 @@ export default class Stats extends Component {
                         <div className="col-sm-12 col-md-3 col-lg-3">
                             <div className="c-callout c-callout-info">
                                 <small className="text-muted">
+                                    YAG Promedio por Semana
+                                </small>
+                                <br />
+                                <strong className="h4">
+                                    {((yag_perday / days)*7).toFixed(2)}
+                                </strong>
+                                <br />
+                                <small className="text-muted">
+                                    $  {this.state.yakigold_data.map(coin => (
+                                        (coin.current_price * ((yag_perday / days)*7)).toFixed(2)
+                                    ))}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 col-md-3 col-lg-3">
+                            <div className="c-callout c-callout-info">
+                                <small className="text-muted">
+                                    YAG Promedio por Mes
+                                </small>
+                                <br />
+                                <strong className="h4">
+                                    {((yag_perday / days)*30).toFixed(2)}
+                                </strong>
+                                <br />
+                                <small className="text-muted">
+                                    $  {this.state.yakigold_data.map(coin => (
+                                       (coin.current_price * ((yag_perday / days)*30)).toFixed(2)
+                                    ))}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 col-md-3 col-lg-3">
+                            <div className="c-callout c-callout-info">
+                                <small className="text-muted">
+                                    Gas Fee BNB
+                                </small>
+                                <br />
+                                <strong className="h4">
+                                    {gas_fee.toFixed(4)}
+                                </strong>
+                                <br />
+                                <small className="text-muted">
+                                    $  {this.state.bnb_data.map(coin => (
+                                        (coin.current_price * gas_fee).toFixed(2)
+                                    ))}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="col-sm-12 col-md-3 col-lg-3">
+                            <div className="c-callout c-callout-info">
+                                <small className="text-muted">
                                     Ganancia Neta
                                 </small>
                                 <br />
                                 <strong className="h4">
-                                    $ {this.state.cryptozoon_data.map(zoon => (this.state.bnb_data.map(bnb => (zoon_total_ganado*zoon.current_price - gas_fee*bnb.current_price).toFixed(2))))} USD
+                                    $ {this.state.yakigold_data.map(yag => (this.state.bnb_data.map(bnb => (yag_total_ganado*yag.current_price - gas_fee*bnb.current_price).toFixed(2))))} USD
                                 </strong>
                             </div>
                         </div>

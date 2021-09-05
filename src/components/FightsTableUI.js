@@ -69,7 +69,7 @@ function FightsTableUI() {
                     <TableRow>
                         <TableCell className={classes.tableHeaderCell}>Date</TableCell>
                         <TableCell className={classes.tableHeaderCell}>Zoan ID</TableCell>
-                        <TableCell className={classes.tableHeaderCell}>Zoon</TableCell>
+                        <TableCell className={classes.tableHeaderCell}>YAG</TableCell>
                         <TableCell className={classes.tableHeaderCell}>Exp</TableCell>
                         <TableCell className={classes.tableHeaderCell}>Result</TableCell>
                         <TableCell className={classes.tableHeaderCell}>Fee</TableCell>
@@ -86,7 +86,7 @@ function FightsTableUI() {
                                 <Typography color="primary" variant="subtitle2">{row.zoan_id}</Typography>
                             </TableCell>
                             <TableCell>
-                                {row.zoon.toFixed(2)}
+                                {row.yag.toFixed(2)}
                             </TableCell>
                             <TableCell>
                                 {row.exp.toFixed(2)}

@@ -66,7 +66,7 @@ export default class FightsList extends Component {
                             <thead>
                                 <tr>
                                     <th><div style={{ textAlign: "center" }}>Date</div></th>
-                                    <th><div style={{ textAlign: "center" }}>Zoon</div></th>
+                                    <th><div style={{ textAlign: "center" }}>YAG</div></th>
                                     <th><div style={{ textAlign: "center" }}>Exp</div></th>
                                     <th><div style={{ textAlign: "center" }}>Result</div></th>
                                     <th><div style={{ textAlign: "center" }}>Fee</div></th>
@@ -79,7 +79,7 @@ export default class FightsList extends Component {
                                         return (
                                             <tr key={fight._id}>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(fight.date).format("LLL")}</div></td>
-                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.zoon}</div></td>
+                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.yag}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.exp}</div></td>
                                                 <td><div style={{ textAlign: "center" }}><button className={getResultIcon(fight.result)}>{fight.result}</button></div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{fight.fee}</div></td>

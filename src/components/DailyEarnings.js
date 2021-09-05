@@ -54,8 +54,6 @@ export default class DailyEarnings extends Component {
                             <thead>
                                 <tr>
                                     <th><div style={{ textAlign: "center" }}>Date</div></th>
-                                    <th><div style={{ textAlign: "center" }}>Zoon Earned</div></th>
-                                    <th><div style={{ textAlign: "center" }}>Zoon to USD</div></th>
                                     <th><div style={{ textAlign: "center" }}>Yag Earned</div></th>
                                     <th><div style={{ textAlign: "center" }}>Yag to USD</div></th>
                                 </tr>
@@ -66,8 +64,6 @@ export default class DailyEarnings extends Component {
                                         return (
                                             <tr key={earning._id}>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{moment(earning.createdAt).format("LLL")}</div></td>
-                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.zoon.toFixed(2)}</div></td>
-                                                <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.cryptozoon_data.map(coin => ((coin.current_price * earning.zoon).toFixed(2)))}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{earning.yag.toFixed(2)}</div></td>
                                                 <td><div style={{ textAlign: "center", margin: '10px' }}>{this.state.yakigold_data.map(coin => ((coin.current_price * earning.yag).toFixed(2)))}</div></td>
                                             </tr>

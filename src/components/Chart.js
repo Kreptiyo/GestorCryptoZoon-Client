@@ -9,7 +9,7 @@ const Chart = () => {
   const chart = () => {
     let earnDay = [];
     let earnZoon = [];
-    axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+    axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=yaki-gold&order=market_cap_desc&per_page=100&page=1&sparkline=false')
       .then(res1 => (
         res1.data.map(zoon => (
           axios
@@ -17,7 +17,7 @@ const Chart = () => {
             .then(res => {
               for (const dataObj of res.data) {
                 earnDay.push(moment(dataObj.createdAt).format('ll'));
-                earnZoon.push(parseInt(dataObj.zoon * zoon.current_price));
+                earnZoon.push(parseInt(dataObj.yag * zoon.current_price));
               }
               setChartData({
                 labels: earnDay,

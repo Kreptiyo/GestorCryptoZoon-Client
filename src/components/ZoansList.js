@@ -68,6 +68,28 @@ function getZoanImg(criterio, exp) {
             return 'https://raw.githubusercontent.com/cryptozoon/images/master/v2/turtle3_idle.gif'
         }
     }
+    if (criterio === "Slime") {
+        if (getZoanLvl(exp) === 1) 
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/slime_1.gif';
+        }
+        if (getZoanLvl(exp) === 2) 
+        {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/slime_1.gif';
+        }
+        if (getZoanLvl(exp) === 3) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/slime_2.gif'
+        }
+        if (getZoanLvl(exp) === 4) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/slime_2.gif'
+        }
+        if (getZoanLvl(exp) === 5) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/slime_3.gif'
+        }
+        if (getZoanLvl(exp) === 6) {
+            return 'https://raw.githubusercontent.com/cryptozoon/images/master/slime_3.gif'
+        }
+    }
 }
 
 const getZoanLvl = exp => {
@@ -102,15 +124,10 @@ export default class ZoansList extends Component {
 
 
     async componentDidMount() {
-        this.getCryptoZoonData();
         this.getYakiGoldData();
         this.getZoans();
     }
 
-    getCryptoZoonData = async () => {
-        const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-        this.setState({ cryptozoon_data: res.data });
-    }
 
     getYakiGoldData = async () => {
         const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=yaki-gold&order=market_cap_desc&per_page=100&page=1&sparkline=false')
@@ -133,7 +150,7 @@ export default class ZoansList extends Component {
         }
     }
 
-    resetZoonEarned = (zoon_earned, yag_earned) => {
+    resetZoonEarned = (yag_earned) => {
             Swal.fire({
                 text: 'Do you want to reset the funds of this Zoan?',
                 icon: 'question',
@@ -144,7 +161,6 @@ export default class ZoansList extends Component {
                   {
                     await axios.patch('https://gestor-cryptozoon.herokuapp.com/api/zoans/resetzoonearned');
                     const newEarning = {
-                        zoon: zoon_earned,
                         yag: yag_earned
                     };
                     await axios.post('https://gestor-cryptozoon.herokuapp.com/api/earnings', newEarning);
@@ -173,16 +189,14 @@ export default class ZoansList extends Component {
     }
 
     render() {
-        let zoon_ganado = 0;
         let yag_ganado = 0;
         this.state.zoans.forEach(zoan => {
-            zoon_ganado += zoan.zoon_earned;
             yag_ganado += zoan.yag_earned;
         })
         return (
             this.state.loaded ?
                 <div className="container">
-                    <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(zoon_ganado, yag_ganado)}> Reset Funds</button>
+                    <button className="btn btn-primary bi bi-piggy-bank" onClick={() => this.resetZoonEarned(yag_ganado)}> Reset Funds</button>
                     <div className="justify-content-center row">
                         {
                             this.state.zoans.map(zoan => (
@@ -197,9 +211,6 @@ export default class ZoansList extends Component {
                                             <p> Rare: {zoan.rarity}</p>
                                             <p> Tribe: {zoan.tribe}</p>
                                             <p> Level: {getZoanLvl(zoan.exp_earned)} / {zoan.exp_earned.toFixed(2)} exp</p>
-                                            <p> Zoon Earned: {zoan.zoon_earned.toFixed(2)} | {this.state.cryptozoon_data.map(coin => (
-                                                (coin.current_price * zoan.zoon_earned).toFixed(2)
-                                            ))} USD</p>
                                             <p> Yag Earned: {zoan.yag_earned.toFixed(2)} | {this.state.yakigold_data.map(coin => (
                                                 (coin.current_price * zoan.yag_earned).toFixed(2)
                                             ))} USD</p>

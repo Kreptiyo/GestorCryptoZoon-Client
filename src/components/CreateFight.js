@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 export default class CreateFight extends Component {
 
     state = {
-        zoon: '',
         yag: '',
         exp: '',
         result: 'Victory',
@@ -19,8 +18,7 @@ export default class CreateFight extends Component {
         const newFight = {
             zoan_id: this.props.match.params.zoan_id,
             date: Date.now(),
-            zoon: this.state.zoon,
-            yag: this.state.yag * 0.75,
+            yag: this.state.yag,
             exp: this.state.exp,
             result: this.state.result,
             fee: this.state.fee,
@@ -28,8 +26,7 @@ export default class CreateFight extends Component {
         };
         await axios.post('https://gestor-cryptozoon.herokuapp.com/api/fights', newFight);
         const newInfo = {
-            zoon_earned: this.state.zoon,
-            yag_earned: this.state.yag * 0.75,
+            yag_earned: this.state.yag,
             exp_earned: this.state.exp
         };
         await axios.put('https://gestor-cryptozoon.herokuapp.com/api/zoans/' + this.props.match.params.zoan_id, newInfo);
@@ -75,10 +72,7 @@ export default class CreateFight extends Component {
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <div className="mb-3">
-                                    <input type="number" className="form-control" onChange={this.onInputChange} name="zoon" placeholder="Zoon" value={this.state.zoon} required />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="number" className="form-control" onChange={this.onInputChange} name="yag" placeholder="Yag" value={this.state.yag} required />
+                                    <input type="number" className="form-control" onChange={this.onInputChange} name="yag" placeholder="YAG" value={this.state.yag} required />
                                 </div>
                                 <div className="mb-3">
                                     <input type="number" className="form-control" onChange={this.onInputChange} name="exp" placeholder="Exp" value={this.state.exp} required />
