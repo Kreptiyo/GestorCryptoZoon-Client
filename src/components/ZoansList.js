@@ -117,7 +117,6 @@ export default class ZoansList extends Component {
 
     state = {
         zoans: [],
-        cryptozoon_data: [],
         yakigold_data: [],
         loaded: true
     }

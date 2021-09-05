@@ -6,16 +6,16 @@ import { LogoutButton } from './Logout';
 
 export default class Navigation extends Component {
     state = {
-        cryptozoon_data: []
+        yakigold_data: []
     }
 
     async componentDidMount() {
-        this.getCryptoZoonData();
+        this.getYakiGoldData();
     }
 
-    getCryptoZoonData = async () => {
-        const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-        this.setState({ cryptozoon_data: res.data });
+    getYakiGoldData = async () => {
+        const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=yaki-gold&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        this.setState({ yakigold_data: res.data });
     }
 
     render() {
@@ -44,15 +44,14 @@ export default class Navigation extends Component {
                             <LogoutButton />
                         </Nav.Item>
                     </Nav>
-                    <span className="precio-zoon bi bi-currency-dollar" style={{ color: 'orange' }}>
+                    <span className="precio-zoon badge bg-warning text-dark">
 
-                        Zoon Price: USD '
-                        {
-                            this.state.cryptozoon_data.map(coin => (
+                        YAG Price:
+                        <span className="bi bi-currency-dollar">{
+                            this.state.yakigold_data.map(coin => (
                                 coin.current_price
                             ))
-                        }
-                        '
+                        } </span>
                     </span>
                 </Navbar.Collapse>
             </Navbar>

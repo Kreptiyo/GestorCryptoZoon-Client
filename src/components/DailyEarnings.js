@@ -12,15 +12,10 @@ export default class DailyEarnings extends Component {
     }
 
     async componentDidMount() {
-        this.getCryptoZoonData();
         this.getYakiGoldData();
         this.getEarnings();
     }
 
-    getCryptoZoonData = async () => {
-        const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=cryptozoon&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-        this.setState({ cryptozoon_data: res.data });
-    }
 
     getYakiGoldData = async () => {
         const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=yaki-gold&order=market_cap_desc&per_page=100&page=1&sparkline=false')
